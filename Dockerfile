@@ -7,6 +7,7 @@ RUN unzip -q /tmp/repere.zip -d /tmp/repere \
  && test -n "$ROOT" \
  && cp -a "$ROOT"/. /app/ \
  && rm -rf /tmp/repere /tmp/repere.zip
+COPY render-start.mjs /app/render-start.mjs
 ENV NODE_ENV=production
 EXPOSE 10000
-CMD ["npm", "run", "start:render"]
+CMD ["node", "render-start.mjs"]
