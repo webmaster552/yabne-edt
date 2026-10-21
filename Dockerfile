@@ -3,7 +3,7 @@ WORKDIR /app
 RUN apk add --no-cache unzip findutils
 COPY Repere-projet-complet.zip /tmp/repere.zip
 RUN unzip -q /tmp/repere.zip -d /tmp/repere \
- && ROOT="$(find /tmp/repere -type f -name package.json -printf '%h\\n' | head -n 1)" \
+ && ROOT="$(find /tmp/repere -type f -name package.json | head -n 1 | xargs dirname)" \
  && test -n "$ROOT" \
  && cp -a "$ROOT"/. /app/ \
  && rm -rf /tmp/repere /tmp/repere.zip
